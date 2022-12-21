@@ -1,0 +1,30 @@
+body {
+  background-color: #f1f5f8;
+}
+.container {
+  width: 980px;
+  margin: 50px auto;
+  text-align: center;
+}
+.container > .setting-container {
+  margin-top: 50px;
+}
+.container > .setting-container input {
+  padding-left: 13px;
+  font-size: 18px;
+  width: 80px;
+  height: 30px;
+  box-sizing: border-box;
+  border: 1px solid #aaa;
+  border-radius: 3px;
+  text-align: center;
+}
+.container > .setting-container button {
+  cursor: pointer;
+  height: 30px;
+  background-color: #409eff;
+  border: none;
+  border-radius: 3px;
+  padding: 0 15px;
+  color: #fff;
+}
