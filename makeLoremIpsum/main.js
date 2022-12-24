@@ -22,30 +22,37 @@ const koText = [
     "국가안전보장회의는 대통령이 주재한다. 여자의 근로는 특별한 보호를 받으며, 고용·임금 및 근로조건에 있어서 부당한 차별을 받지 아니한다. 국가는 전통문화의 계승·발전과 민족문화의 창달에 노력하여야 한다. 제1항의 지시를 받은 당해 행정기관은 이에 응하여야 한다. 국회는 국민의 보통·평등·직접·비밀선거에 의하여 선출된 국회의원으로 구성한다."
 ]
 
-// input 숫자 업데이트
-let numberInput = 0
-    document.querySelector("#numberInput").addEventListener('input', (event) => {
-    numberInput = event.target.value;
-});
 
 // 텍스트 생성
 function generateText(event) {
     event.preventDefault();
+
+    let numberInput = parseInt(document.querySelector("#numberInput").value);
+    if(numberInput > 9 || isNaN(numberInput) || numberInput < 0){
+     alert("1~9까지의 숫자를 입력해주세요.")
+     return false   
+    }
+    
     // 문단 element 전부 제거 
     document.querySelectorAll(".lorem-text").forEach((elem) => elem.remove());
-    let langValue = document.querySelector('input[name="language"]:checked').value;
+    
     // 문단 element 생성
+    let langValue = document.querySelector('input[name="language"]:checked').value;
     const textContainer = document.querySelector(".text-container");
-    for(let i = 0; i<numberInput; i++){
-        let newLi = document.createElement("li");
-        newLi.classList.add('lorem-text');
-
-        let newContent = ''
-        if(langValue === "en") newContent = document.createTextNode(enText[i]);
-        else if(langValue === "en") newContent = document.createTextNode(koText[i]);
-        
-        newLi.appendChild(newContent);
-        textContainer.appendChild(newLi);
-    }
+    
+        for(let i = 0; i<numberInput; i++){
+            let newLi = document.createElement("li");
+            newLi.classList.add('lorem-text');
+             
+            const randomNum = Math.floor(Math.random() * 9)
+            let newContent = ''
+            if(langValue === "en") newContent = document.createTextNode(enText[randomNum]);
+            else if(langValue === "ko") newContent = document.createTextNode(koText[randomNum]);
+    
+            newLi.appendChild(newContent);
+            textContainer.appendChild(newLi);
+        }
+    
+    
 }
 
