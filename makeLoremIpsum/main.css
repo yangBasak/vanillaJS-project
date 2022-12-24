@@ -2,14 +2,18 @@ body {
   background-color: #f1f5f8;
 }
 .container {
-  width: 980px;
+  max-width: 980px;
   margin: 50px auto;
   text-align: center;
 }
-.container > .setting-container {
+.container > .setting-form {
   margin-top: 50px;
 }
-.container > .setting-container input {
+.container > .tip{
+  color: #999;
+  font-size: 14px;
+}
+.container > .setting-form >.text-number input {
   padding-left: 13px;
   font-size: 18px;
   width: 80px;
@@ -19,7 +23,10 @@ body {
   border-radius: 3px;
   text-align: center;
 }
-.container > .setting-container button {
+.container > .setting-form > .text-lang{
+  margin-bottom: 20px;
+}
+.container > .setting-form button {
   cursor: pointer;
   height: 30px;
   background-color: #409eff;
@@ -28,4 +35,11 @@ body {
   padding: 0 15px;
   margin-left: 10px;
   color: #fff;
+}
+.container > .text-container{
+  text-align: left;
+}
+.container > .text-container li{
+  margin: 30px 0;
+  list-style: none;
 }

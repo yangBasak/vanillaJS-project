@@ -5,20 +5,25 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
     <title>로렘 입숨 생성기</title>
     <meta name="viewport" content="width=device-width, initial-scale=1" />
-    <link rel="stylesheet" type="text/css" media="screen" href="main.css" />
-    <script src="main.js"></script>
+    <link rel="stylesheet" type="text/css" media="screen" href="main.css" /> 
   </head>
   <body>
     <section class="container">
       <h1>Lorem Ipsum 생성기</h1>
-      <form class="setting-container">
-        <span>문단 수:</span>
-        <input type="number" />
-        <button type="submit">생성</button>
+      <span class="tip">최대 9개까지 생성 가능합니다.</span>
+      <form class="setting-form" onsubmit="generateText(event)">
+        <div class="text-lang">
+          <label><input type="radio" name="language" value="ko" checked> 한글</label>
+          <label><input type="radio" name="language" value="en"> 영어</label>
+        </div>
+        <div class="text-number">
+          <span>문단 수:</span>
+          <input type="number" value="0" id="numberInput" />
+          <button>생성</button>
+        </div>
       </form>
-      <ul>
-        <li></li>
-      </ul>
+      <ul class="text-container"></ul>
     </section>
+    <script src="main.js"></script> 
   </body>
 </html>
