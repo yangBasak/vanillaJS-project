@@ -25,6 +25,7 @@ function canSubmit(nickname, email, password, password2) {
   return isSuccess
 }
 
+// 메시지 표출
 function showError(ele, msg) {
   ele.parentElement.className = "form-item error-text";
   ele.nextElementSibling.innerText = msg;
@@ -33,7 +34,7 @@ function correctValue(ele) {
   ele.parentElement.className = "form-item";
 }
 
-
+//유효성 검사
 function checkLength(ele, length) {
   if(ele.value.length < length){
     showError(ele, `${length}글자 이상으로 적어주세요.`);
