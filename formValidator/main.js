@@ -1,49 +1,65 @@
-function submitForm(e) {
+function submitForms() {
   const nickname = document.querySelector("#nickname");
   const email = document.querySelector("#email");
   const password = document.querySelector("#password");
-  const confirmPassword = document.querySelector("#confirmPassword");
+  const password2 = document.querySelector("#confirmPassword");
 
-  isEmpty([nickname, email, password, confirmPassword]);
+  let isSuccess = canSubmit(nickname, email, password, password2)  
+  return isSuccess
 }
 
-function isEmpty(inputArr) {
-  inputArr.forEach((item) => {
-    if (item.value === "") {
-      showError(item, "입력해주세요");
-    } else {
-      checkLength(item, 3);
-      confirmEmail(item);
-      checkLength(item, 6);
-      confirmPassword(item);
+// submit 여부
+function canSubmit(nickname, email, password, password2) {
+  let answerArr = []
+  answerArr.push(checkLength(nickname, 3))
+  answerArr.push(confirmEmail(email))
+  answerArr.push(checkLength(password, 6))
+  answerArr.push(confirmPassword(password2, password))
+  
+  let isSuccess = true
+  for(let i = 0; i<answerArr.length; i++){
+    if(!answerArr[i]){
+      isSuccess = false
     }
-  });
+  }
+  return isSuccess
 }
 
 function showError(ele, msg) {
   ele.parentElement.className = "form-item error-text";
   ele.nextElementSibling.innerText = msg;
 }
-
 function correctValue(ele) {
   ele.parentElement.className = "form-item";
 }
 
+
 function checkLength(ele, length) {
-  /**
-   * 맞으면 correctValue(ele) 호출
-   * 틀리면 showError(ele, msg) 호출
-   */
+  if(ele.value.length < length){
+    showError(ele, `${length}글자 이상으로 적어주세요.`);
+    return false
+  }else{
+    correctValue(ele)
+    return true
+  }
 }
-function confirmPassword() {
-  /**
-   * 맞으면 correctValue(ele) 호출
-   * 틀리면 showError(ele, msg) 호출
-   */
+function confirmPassword(ele,password) {
+  if(ele.value !== password.value || ele.value === ""){
+    showError(ele, `비밀번호와 동일하게 적어주세요.`);
+    return false
+  }else{
+    correctValue(ele)
+    return true
+  }
 }
-function confirmEmail() {
-  /**
-   * 맞으면 correctValue(ele) 호출
-   * 틀리면 showError(ele, msg) 호출
-   */
+function confirmEmail(ele) {
+  const emailExg = /^[A-z|0-9]([A-z|0-9]*)(@)([A-z]*)(\.)([A-z]*)$/
+  if(!emailExg.test(ele.value)){
+    showError(ele, `올바른 email 형식으로 적어주세요.`);
+    return false
+  }else{
+    correctValue(ele)
+    return true
+  }
 }
+
